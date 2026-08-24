@@ -1,6 +1,6 @@
 {
-  "versionCode": 2,
-  "versionName": "0.2",
+  "versionCode": 3,
+  "versionName": "0.3",
   "apkUrl": "https://smartdrone-us.github.io/VentureK-Release/venture-release.apk",
-  "notes": "Release v0.2"
+  "notes": "Release 0.3\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01G6NKEg1qim7YcLyJLR1z6Z"
 }
