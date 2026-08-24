@@ -2,5 +2,5 @@
   "versionCode": 3,
   "versionName": "0.3",
   "apkUrl": "https://smartdrone-us.github.io/VentureK-Release/venture-release.apk",
-  "notes": "Release 0.3\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01G6NKEg1qim7YcLyJLR1z6Z"
+  "notes": "Remote ID now broadcasts the takeoff point as the operator location.\n\nThe position sent was the controller's own, labelled as the aircraft's\ntakeoff spot — two different things under one field. It now sends the\ntakeoff point itself, stated as such, and falls back to the controller's\nlive fix (declared as live GNSS) until the aircraft has armed. Nothing\nwaits on it, so a launch is never held up for want of an operator fix."
 }
