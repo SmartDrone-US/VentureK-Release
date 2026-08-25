@@ -1,6 +1,6 @@
 {
-  "versionCode": 3,
-  "versionName": "0.3",
+  "versionCode": 4,
+  "versionName": "0.4",
   "apkUrl": "https://smartdrone-us.github.io/VentureK-Release/venture-release.apk",
-  "notes": "Remote ID now broadcasts the takeoff point as the operator location.\n\nThe position sent was the controller's own, labelled as the aircraft's\ntakeoff spot — two different things under one field. It now sends the\ntakeoff point itself, stated as such, and falls back to the controller's\nlive fix (declared as live GNSS) until the aircraft has armed. Nothing\nwaits on it, so a launch is never held up for want of an operator fix."
+  "notes": "The app wears its real badge. The launcher icon and the card in the\nrecents switcher both show the Venture mark now, and that card's header\nis the app's own dark rather than the near-white grey it had been.\n\nThe +/- zoom buttons are gone from all three map screens. They sat\nunderneath the on-screen controls where nothing could reach them, and\npinch already does the job.\n\nThe plan screen's bottom bar carries icons on BACK, LOCATE, UNDO and\nSAVE, so it can be read at a glance rather than word by word. LOCATE\nstill spells out why there is no fix whenever there isn't one."
 }

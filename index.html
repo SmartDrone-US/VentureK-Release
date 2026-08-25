@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Venture</title>
+<!--
+  The download page for VentureK-Release.
+
+  It lives in this repo rather than in VentureK-Release because the release
+  workflow publishes site/ with peaceiris/actions-gh-pages and no keep_files,
+  which replaces that branch wholesale on every tag - a page committed over
+  there by hand would survive exactly until the next release. The workflow does
+  "mkdir -p site" and then adds the APK and version.json to it, so whatever is
+  committed here ships alongside them untouched.
+
+  Nothing is stamped in at build time. The page reads version.json - the same
+  manifest the app itself polls, sitting beside this file - so it states the
+  current version without the workflow having to know this page exists, and it
+  can never disagree with what the app is offered. Every value that comes from
+  the manifest is written with textContent, never innerHTML: the notes are
+  prose from a tag message and are not to be treated as markup.
+
+  The download link is a plain static href, so a first install still works with
+  scripting off or the manifest unreachable.
+-->
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2.5rem 1.25rem 4rem;
+    background: #0E1417;
+    color: #E7EDF0;
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  main { max-width: 34rem; margin: 0 auto; }
+  .badge { width: 96px; height: 96px; display: block; margin: 0 auto 1.25rem; }
+  h1 { margin: 0; text-align: center; font-size: 2rem; letter-spacing: .02em; }
+  .ver {
+    margin: .4rem 0 2rem; text-align: center; color: #8DA2AD;
+    font-variant-numeric: tabular-nums; min-height: 1.6em;
+  }
+  .dl {
+    display: block; max-width: 22rem; margin: 0 auto;
+    padding: 1.05rem 1.5rem; border-radius: 999px;
+    background: linear-gradient(180deg, #F08521, #E25622);
+    color: #14100C; text-decoration: none; text-align: center;
+    font-size: 1.05rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  }
+  .dl:hover { filter: brightness(1.08); }
+  .dl:focus-visible { outline: 3px solid #F0A85E; outline-offset: 3px; }
+  .meta { margin: .85rem 0 0; text-align: center; color: #6F828C; font-size: .875rem; }
+  section { margin-top: 3rem; }
+  section[hidden] { display: none; }
+  h2 {
+    margin: 0 0 .85rem; font-size: .8rem; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase; color: #8DA2AD;
+  }
+  #notes {
+    margin: 0; padding: 1.15rem 1.35rem; border-radius: .75rem;
+    background: rgba(255,255,255,.05); border-left: 3px solid #E25622;
+    white-space: pre-wrap; font: inherit; color: #DCE6EB;
+  }
+  ol { margin: 0; padding-left: 1.35rem; color: #C4D2DA; }
+  li { margin-bottom: .55rem; }
+  .aside { margin: .9rem 0 0; color: #6F828C; font-size: .875rem; }
+  footer {
+    margin-top: 3rem; padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,.08);
+    color: #6F828C; font-size: .875rem;
+  }
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .875em; color: #B9C8D1;
+  }
+</style>
+</head>
+<body>
+<main>
+  <img class="badge" src="icon.png" alt="">
+  <h1>Venture</h1>
+  <p class="ver" id="version"></p>
+
+  <a class="dl" href="venture-release.apk" download>Download APK</a>
+  <p class="meta" id="size">Android 7.1 or newer</p>
+
+  <section id="notes-section" hidden>
+    <h2>What changed</h2>
+    <p id="notes"></p>
+  </section>
+
+  <section>
+    <h2>Installing by hand</h2>
+    <ol>
+      <li>Open this page on the controller and tap <strong>Download APK</strong>.</li>
+      <li>If Android refuses to open it, allow installs from this source when prompted.</li>
+      <li>Open the downloaded file and install over the existing app.</li>
+    </ol>
+    <p class="aside">
+      Installing over the top keeps your saved missions. Every release is signed
+      with the same key, so Android treats it as an update rather than a
+      different app.
+    </p>
+  </section>
+
+  <footer>
+    Venture checks for updates itself at launch and offers to install them, so
+    this page is only needed for a first install, or when the controller could
+    not reach the internet at the time. The manifest it reads is
+    <code>version.json</code>, beside this page.
+  </footer>
+</main>
+
+<script>
+  (function () {
+    var versionEl = document.getElementById('version');
+    var notesEl = document.getElementById('notes');
+    var notesSection = document.getElementById('notes-section');
+    var sizeEl = document.getElementById('size');
+
+    // Cache-busted: Pages serves the manifest with a long max-age, and a page
+    // that offers yesterday's version number beside today's APK is worse than
+    // one that offers no number at all.
+    fetch('version.json?t=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        return r.json();
+      })
+      .then(function (m) {
+        if (m.versionName) {
+          versionEl.textContent = 'Version ' + m.versionName +
+            (m.versionCode ? ' · build ' + m.versionCode : '');
+        }
+        if (m.notes) {
+          notesEl.textContent = m.notes;
+          notesSection.hidden = false;
+        }
+      })
+      .catch(function () {
+        // Leave the heading blank rather than guessing. The download still works.
+      });
+
+    // Size is a courtesy - it tells an operator on a thin link what they are in
+    // for - so it is asked for separately and skipped in silence if the HEAD
+    // fails or the server declines to say.
+    fetch('venture-release.apk', { method: 'HEAD' })
+      .then(function (r) {
+        var len = r.headers.get('content-length');
+        if (!len) return;
+        sizeEl.textContent = (Number(len) / 1048576).toFixed(1) +
+          ' MB · Android 7.1 or newer';
+      })
+      .catch(function () {});
+  })();
+</script>
+</body>
+</html>
