@@ -2,5 +2,5 @@
   "versionCode": 5,
   "versionName": "0.5",
   "apkUrl": "https://smartdrone-us.github.io/VentureK-Release/venture-release.apk",
-  "notes": "Release 0.5"
+  "notes": "Remote ID no longer loses the operator's location before the first arm.\n\nThe operator location was the spot the aircraft lifted off from, which\nis only recorded at the moment the motors start. Before the first\ntakeoff of a session there was no such spot, so the controller's own\nGPS stood in — and with no fix on the controller, nothing was sent at\nall and the autopilot reported the operator location lost. That landed\nat pre-arm, holding up the very launch it was waiting on.\n\nA disarmed aircraft is already standing where it will lift off from, so\nits own position now answers for the operator location until it flies.\nIts receiver is the better of the two, and it cannot arm without a fix.\nOnce it is airborne, the controller's position stands in as before."
 }
