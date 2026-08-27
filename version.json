@@ -1,6 +1,6 @@
 {
-  "versionCode": 4,
-  "versionName": "0.4",
+  "versionCode": 5,
+  "versionName": "0.5",
   "apkUrl": "https://smartdrone-us.github.io/VentureK-Release/venture-release.apk",
-  "notes": "The app wears its real badge. The launcher icon and the card in the\nrecents switcher both show the Venture mark now, and that card's header\nis the app's own dark rather than the near-white grey it had been.\n\nThe +/- zoom buttons are gone from all three map screens. They sat\nunderneath the on-screen controls where nothing could reach them, and\npinch already does the job.\n\nThe plan screen's bottom bar carries icons on BACK, LOCATE, UNDO and\nSAVE, so it can be read at a glance rather than word by word. LOCATE\nstill spells out why there is no fix whenever there isn't one."
+  "notes": "Release 0.5"
 }
