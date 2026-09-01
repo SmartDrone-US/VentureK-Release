@@ -1,6 +1,6 @@
 {
-  "versionCode": 7,
-  "versionName": "0.7",
+  "versionCode": 8,
+  "versionName": "0.8",
   "apkUrl": "https://smartdrone-us.github.io/VentureK-Release/venture-release.apk",
-  "notes": "Remote ID no longer blocks the launch.\n\nThe Here 4 Blue's Remote ID module wedges at cold boot and reports \"invalid\nlocation\" until it frees itself, a minute or two later. The autopilot was\nwilling to arm through it — the app was not, and that was the app's mistake.\nLAUNCH now answers to the aircraft's own pre-arm check.\n\nThe RID readout says \"Glitch\" instead of the module's clipped error text. The\nfull wording is still in the status panel.\n\nSpaces in a mission name become underscores, as you type. The name becomes a\nfolder on the drone, and a space there causes trouble downstream.\n\nFLY is now DRONE, and the ARMED pill no longer reads \"TAP TO DISARM\" — it still\ndisarms, behind the same two confirmations."
+  "notes": "Release 0.8"
 }
