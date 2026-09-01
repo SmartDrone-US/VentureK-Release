@@ -1,6 +1,6 @@
 {
-  "versionCode": 8,
-  "versionName": "0.8",
+  "versionCode": 9,
+  "versionName": "0.9",
   "apkUrl": "https://smartdrone-us.github.io/VentureK-Release/venture-release.apk",
-  "notes": "Release 0.8"
+  "notes": "Terrain following no longer quietly turns into a flat mission when the\nground data is incomplete. If elevation coverage is missing for part of\nthe area, the wizard now stops you before it lets you fly a mission\nthat says Terrain Follow but isn't.\n\nSaved missions carry their own terrain data now. One planned with\nterrain following can be opened and flown with the same altitudes even\nwithout a signal to refetch it."
 }
