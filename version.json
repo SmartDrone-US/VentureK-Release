@@ -1,6 +1,6 @@
 {
-  "versionCode": 9,
-  "versionName": "0.9",
+  "versionCode": 10,
+  "versionName": "1.0",
   "apkUrl": "https://smartdrone-us.github.io/VentureK-Release/venture-release.apk",
-  "notes": "Terrain following no longer quietly turns into a flat mission when the\nground data is incomplete. If elevation coverage is missing for part of\nthe area, the wizard now stops you before it lets you fly a mission\nthat says Terrain Follow but isn't.\n\nSaved missions carry their own terrain data now. One planned with\nterrain following can be opened and flown with the same altitudes even\nwithout a signal to refetch it."
+  "notes": "Flown legs: when a mission ends early — most do, on a battery RTL — the app\nnow files what was actually flown as its own entry under the plan, with\nwhere it joined the survey and where it turned for home. RERUN uploads just\nthat portion instead of the whole plan again.\n\nThe Herelink's A, B, C, D and Home buttons now do something: Loiter, Auto,\nLand, Alt Hold and RTL. A new Button modes switch in Config turns them back\noff if you'd rather they stayed inert.\n\nConfig also gets a Flight history switch, to hide the flown-leg rows if you\ndon't want them listed, and a tidier one-row-per-setting layout.\n\nSmaller fixes: the on-screen keyboard's shift key now behaves like a normal\nshift (double-tap for caps lock), a debug build no longer needs the release\nkeystore to configure, and a debug APK now builds automatically on every\npush to develop."
 }
