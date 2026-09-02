@@ -1,6 +1,6 @@
 {
-  "versionCode": 11,
-  "versionName": "0.11",
+  "versionCode": 12,
+  "versionName": "0.12",
   "apkUrl": "https://smartdrone-us.github.io/VentureK-Release/venture-release.apk",
-  "notes": "Pulled the A/B/C/D/Home button mapping that shipped in 0.10 (Loiter, Auto,\nLand, Alt Hold, RTL) while a safer way to roll it out gets worked through.\nThe physical buttons are back to doing nothing, same as before 0.10."
+  "notes": "Vertices on the planning map can now be moved: drag a corner to fine\ntune the area and the survey redraws as you go. Tap a corner and the\nUNDO button turns into ERASE to remove just that one. UNDO now walks\nback any edit — a point added, moved or erased, or a clear — and\nclearing the whole area takes a two second hold on the same button.\n\nBore sight: hold the Survey card for five seconds when starting a\nnew plan to lay out a bore sight and a survey as one mission, takeoff\nto landing. The survey is flown on from the bore sight's finish.\n\nA manual mode change mid-flight now flashes the new mode over the\nmap so it cannot be missed, and GUIDED shows as AUTO."
 }
