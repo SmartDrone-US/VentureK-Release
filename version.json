@@ -1,6 +1,6 @@
 {
-  "versionCode": 10,
-  "versionName": "0.10",
+  "versionCode": 11,
+  "versionName": "0.11",
   "apkUrl": "https://smartdrone-us.github.io/VentureK-Release/venture-release.apk",
-  "notes": "Flown legs: when a mission ends early — most do, on a battery RTL — the app\nnow files what was actually flown as its own entry under the plan, with\nwhere it joined the survey and where it turned for home. RERUN uploads just\nthat portion instead of the whole plan again.\n\nThe Herelink's A, B, C, D and Home buttons now do something: Loiter, Auto,\nLand, Alt Hold and RTL. A new Button modes switch in Config turns them back\noff if you'd rather they stayed inert.\n\nConfig also gets a Flight history switch, to hide the flown-leg rows if you\ndon't want them listed, and a tidier one-row-per-setting layout.\n\nSmaller fixes: the on-screen keyboard's shift key now behaves like a normal\nshift (double-tap for caps lock), a debug build no longer needs the release\nkeystore to configure, and a debug APK now builds automatically on every\npush to develop."
+  "notes": "Pulled the A/B/C/D/Home button mapping that shipped in 0.10 (Loiter, Auto,\nLand, Alt Hold, RTL) while a safer way to roll it out gets worked through.\nThe physical buttons are back to doing nothing, same as before 0.10."
 }
