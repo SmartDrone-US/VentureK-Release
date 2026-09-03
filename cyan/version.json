@@ -2,5 +2,5 @@
   "versionCode": 1,
   "versionName": "0.1",
   "apkUrl": "https://smartdrone-us.github.io/VentureK-Release/cyan/cyan-release.apk",
-  "notes": "Initial Cyan mission review application release.\\n\\n• Establishes Cyan as a dedicated SmartDrone controller app.\\n• Launches from Venture Home.\\n• Provides the foundation for mission review workflows."
+  "notes": "Initial Cyan mission review application release.\n\n• Establishes Cyan as a dedicated SmartDrone controller app.\n• Launches from Venture Home.\n• Provides the foundation for mission review workflows."
 }

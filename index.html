@@ -35,7 +35,7 @@
   main { max-width: 34rem; margin: 0 auto; }
   .product { text-align: center; }
   .product + .product {
-    margin-top: 4rem; padding-top: 4rem;
+    margin-top: 2.75rem; padding-top: 2.75rem;
     border-top: 1px solid rgba(255,255,255,.08);
   }
   .badge { width: 96px; height: 96px; display: block; margin: 0 auto 1.25rem; }
@@ -60,17 +60,18 @@
   .dl:hover { filter: brightness(1.08); }
   .dl:focus-visible { outline: 3px solid #F0A85E; outline-offset: 3px; }
   .meta { margin: .85rem 0 0; text-align: center; color: #6F828C; font-size: .875rem; }
-  .release-notes { margin-top: 3rem; text-align: left; }
+  .release-notes { margin-top: 2.25rem; text-align: left; }
   .release-notes[hidden] { display: none; }
   h2 {
     margin: 0 0 .85rem; font-size: .8rem; font-weight: 700;
     letter-spacing: .12em; text-transform: uppercase; color: #8DA2AD;
   }
-  #notes {
+  [data-notes] {
     margin: 0; padding: 1.15rem 1.35rem; border-radius: .75rem;
     background: rgba(255,255,255,.05); border-left: 3px solid #E25622;
     white-space: pre-wrap; font: inherit; color: #DCE6EB;
   }
+  .manual-install { margin-top: 3rem; }
   ol { margin: 0; padding-left: 1.35rem; color: #C4D2DA; }
   li { margin-bottom: .55rem; }
   .aside { margin: .9rem 0 0; color: #6F828C; font-size: .875rem; }
