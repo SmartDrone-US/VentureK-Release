@@ -1,6 +1,6 @@
 {
-  "versionCode": 12,
-  "versionName": "0.12",
+  "versionCode": 13,
+  "versionName": "0.13",
   "apkUrl": "https://smartdrone-us.github.io/VentureK-Release/venture-release.apk",
-  "notes": "Vertices on the planning map can now be moved: drag a corner to fine\ntune the area and the survey redraws as you go. Tap a corner and the\nUNDO button turns into ERASE to remove just that one. UNDO now walks\nback any edit — a point added, moved or erased, or a clear — and\nclearing the whole area takes a two second hold on the same button.\n\nBore sight: hold the Survey card for five seconds when starting a\nnew plan to lay out a bore sight and a survey as one mission, takeoff\nto landing. The survey is flown on from the bore sight's finish.\n\nA manual mode change mid-flight now flashes the new mode over the\nmap so it cannot be missed, and GUIDED shows as AUTO."
+  "notes": "Uploading a mission now asks what to label the flight: the mission's\nown name, or the current time as yymmddhhmm. Choosing the time creates\na new mission named by the time from the plan you are uploading, and\nevery leg of that flight files under it in the mission list, leaving\nthe original plan untouched. Rerunning a flown leg is not asked and\ngoes out under its own name as before."
 }
