@@ -2,5 +2,5 @@
   "versionCode": 14,
   "versionName": "0.14",
   "apkUrl": "https://smartdrone-us.github.io/VentureK-Release/venture-release.apk",
-  "notes": "Correct release version extraction for the SmartDrone factory artifacts."
+  "notes": "SmartDrone controller release\n\n• Venture 0.14 adds mission upload labels for a plan name or a timestamped flight.\n• Venture Home 0.1 provides the branded HereLink launcher and boot path to Venture.\n• Cyan 0.1 establishes the mission review application shell.\n• All controller applications use the SmartDrone release certificate."
 }
