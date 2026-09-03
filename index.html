@@ -51,6 +51,17 @@
   }
   .dl:hover { filter: brightness(1.08); }
   .dl:focus-visible { outline: 3px solid #F0A85E; outline-offset: 3px; }
+  .app-grid { display: grid; gap: .85rem; }
+  .app-card {
+    padding: 1.15rem 1.35rem; border-radius: .75rem;
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+  }
+  .app-card h3 { margin: 0; font-size: 1.05rem; }
+  .app-card p { margin: .25rem 0 .85rem; color: #AEBEC6; }
+  .dl.secondary {
+    max-width: none; padding: .8rem 1rem; border-radius: .55rem;
+    background: #263840; color: #DCE6EB; font-size: .9rem;
+  }
   .meta { margin: .85rem 0 0; text-align: center; color: #6F828C; font-size: .875rem; }
   section { margin-top: 3rem; }
   section[hidden] { display: none; }
@@ -89,6 +100,23 @@
   <section id="notes-section" hidden>
     <h2>What changed</h2>
     <p id="notes"></p>
+  </section>
+
+  <section>
+    <h2>Controller apps</h2>
+    <div class="app-grid">
+      <article class="app-card">
+        <h3>Venture Home</h3>
+        <p>SmartDrone controller launcher and flight-app entry point.</p>
+        <a class="dl secondary" href="launcher/venture-home.apk" download>Download Venture Home</a>
+      </article>
+      <article class="app-card">
+        <h3>Cyan</h3>
+        <p>SmartDrone mission review application.</p>
+        <a class="dl secondary" href="cyan/cyan-release.apk" download>Download Cyan</a>
+      </article>
+    </div>
+    <p class="aside">All SmartDrone controller apps are signed with the same release certificate.</p>
   </section>
 
   <section>
