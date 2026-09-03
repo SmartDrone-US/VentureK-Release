@@ -1,6 +1,6 @@
 {
-  "versionCode": 13,
-  "versionName": "0.13",
+  "versionCode": 14,
+  "versionName": "0.14",
   "apkUrl": "https://smartdrone-us.github.io/VentureK-Release/venture-release.apk",
-  "notes": "Uploading a mission now asks what to label the flight: the mission's\nown name, or the current time as yymmddhhmm. Choosing the time creates\na new mission named by the time from the plan you are uploading, and\nevery leg of that flight files under it in the mission list, leaving\nthe original plan untouched. Rerunning a flown leg is not asked and\ngoes out under its own name as before."
+  "notes": "Correct release version extraction for the SmartDrone factory artifacts."
 }
