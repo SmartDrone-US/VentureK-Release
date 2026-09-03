@@ -1,6 +1,6 @@
 {
-  "versionCode": 1,
-  "versionName": "0.1",
+  "versionCode": 2,
+  "versionName": "0.2",
   "apkUrl": "https://smartdrone-us.github.io/VentureK-Release/launcher/venture-home.apk",
-  "notes": "Initial SmartDrone controller launcher release.\n\n• Provides the Venture Home screen for HereLink controllers.\n• Starts Venture after controller boot.\n• Opens HereLink configuration after a five-second press.\n• Provides the Cyan launch entry."
+  "notes": "Venture Home 0.2 makes the launcher the controller boot destination.\n\n• Venture opens only when selected from Home.\n• Opens HereLink configuration after a five-second press.\n• Provides the Cyan launch entry."
 }

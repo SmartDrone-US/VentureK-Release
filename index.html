@@ -7,9 +7,12 @@
 <!--
   The download page for VentureK-Release.
 
-  This public page lives beside the release artifacts. The release workflow
-  overlays its APKs and manifests while preserving this hand-authored page,
-  icon, and Pages metadata.
+  It lives in this repo rather than in VentureK-Release because the release
+  workflow publishes site/ with peaceiris/actions-gh-pages and no keep_files,
+  which replaces that branch wholesale on every tag - a page committed over
+  there by hand would survive exactly until the next release. The workflow does
+  "mkdir -p site" and then adds the APK and version.json to it, so whatever is
+  committed here ships alongside them untouched.
 
   Nothing is stamped in at build time. The page reads version.json - the same
   manifest the app itself polls, sitting beside this file - so it states the
@@ -33,18 +36,7 @@
     -webkit-font-smoothing: antialiased;
   }
   main { max-width: 34rem; margin: 0 auto; }
-  .product { text-align: center; }
-  .product + .product {
-    margin-top: 2.75rem; padding-top: 2.75rem;
-    border-top: 1px solid rgba(255,255,255,.08);
-  }
   .badge { width: 96px; height: 96px; display: block; margin: 0 auto 1.25rem; }
-  .letter-badge {
-    display: grid; place-items: center; border: 4px solid #F07124; border-radius: 24px;
-    background: #171D20; color: #E7EDF0; font-size: 3.15rem; font-weight: 700;
-    line-height: 1; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  }
-  .letter-badge.cyan { border-color: #74C9E7; color: #9EDCF2; }
   h1 { margin: 0; text-align: center; font-size: 2rem; letter-spacing: .02em; }
   .ver {
     margin: .4rem 0 2rem; text-align: center; color: #8DA2AD;
@@ -60,18 +52,17 @@
   .dl:hover { filter: brightness(1.08); }
   .dl:focus-visible { outline: 3px solid #F0A85E; outline-offset: 3px; }
   .meta { margin: .85rem 0 0; text-align: center; color: #6F828C; font-size: .875rem; }
-  .release-notes { margin-top: 2.25rem; text-align: left; }
-  .release-notes[hidden] { display: none; }
+  section { margin-top: 3rem; }
+  section[hidden] { display: none; }
   h2 {
     margin: 0 0 .85rem; font-size: .8rem; font-weight: 700;
     letter-spacing: .12em; text-transform: uppercase; color: #8DA2AD;
   }
-  [data-notes] {
+  #notes {
     margin: 0; padding: 1.15rem 1.35rem; border-radius: .75rem;
     background: rgba(255,255,255,.05); border-left: 3px solid #E25622;
     white-space: pre-wrap; font: inherit; color: #DCE6EB;
   }
-  .manual-install { margin-top: 3rem; }
   ol { margin: 0; padding-left: 1.35rem; color: #C4D2DA; }
   li { margin-bottom: .55rem; }
   .aside { margin: .9rem 0 0; color: #6F828C; font-size: .875rem; }
@@ -88,43 +79,19 @@
 </head>
 <body>
 <main>
-  <article class="product" data-manifest="version.json" data-apk="venture-release.apk">
-    <img class="badge" src="icon.png" alt="Venture">
-    <h1>Venture</h1>
-    <p class="ver" data-version></p>
-    <a class="dl" href="venture-release.apk" download>Download APK</a>
-    <p class="meta" data-size>Android 7.1 or newer</p>
-    <section class="release-notes" data-notes-section hidden>
-      <h2>What changed</h2>
-      <p data-notes></p>
-    </section>
-  </article>
+  <img class="badge" src="icon.png" alt="">
+  <h1>Venture</h1>
+  <p class="ver" id="version"></p>
 
-  <article class="product" data-manifest="cyan/version.json" data-apk="cyan/cyan-release.apk">
-    <div class="badge letter-badge cyan" aria-hidden="true">C</div>
-    <h1>Cyan</h1>
-    <p class="ver" data-version></p>
-    <a class="dl" href="cyan/cyan-release.apk" download>Download Cyan</a>
-    <p class="meta" data-size>Android 7.1 or newer</p>
-    <section class="release-notes" data-notes-section hidden>
-      <h2>What changed</h2>
-      <p data-notes></p>
-    </section>
-  </article>
+  <a class="dl" href="venture-release.apk" download>Download APK</a>
+  <p class="meta" id="size">Android 7.1 or newer</p>
 
-  <article class="product" data-manifest="launcher/version.json" data-apk="launcher/venture-home.apk">
-    <div class="badge letter-badge" aria-hidden="true">V</div>
-    <h1>Venture Home</h1>
-    <p class="ver" data-version></p>
-    <a class="dl" href="launcher/venture-home.apk" download>Download Venture Home</a>
-    <p class="meta" data-size>Android 7.1 or newer</p>
-    <section class="release-notes" data-notes-section hidden>
-      <h2>What changed</h2>
-      <p data-notes></p>
-    </section>
-  </article>
+  <section id="notes-section" hidden>
+    <h2>What changed</h2>
+    <p id="notes"></p>
+  </section>
 
-  <section class="manual-install">
+  <section>
     <h2>Installing by hand</h2>
     <ol>
       <li>Open this page on the controller and tap <strong>Download APK</strong>.</li>
@@ -139,33 +106,53 @@
   </section>
 
   <footer>
-    Venture checks for updates itself at launch and offers to install them. The
-    other apps can be installed from the download links above.
+    Venture checks for updates itself at launch and offers to install them, so
+    this page is only needed for a first install, or when the controller could
+    not reach the internet at the time. The manifest it reads is
+    <code>version.json</code>, beside this page.
   </footer>
 </main>
 
 <script>
   (function () {
-    Array.prototype.forEach.call(document.querySelectorAll('[data-manifest]'), function (product) {
-      var versionEl = product.querySelector('[data-version]');
-      var notesEl = product.querySelector('[data-notes]');
-      var notesSection = product.querySelector('[data-notes-section]');
-      var sizeEl = product.querySelector('[data-size]');
-      fetch(product.dataset.manifest + '?t=' + Date.now(), { cache: 'no-store' })
-        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-        .then(function (m) {
-          if (m.versionName) versionEl.textContent = 'Version ' + m.versionName +
+    var versionEl = document.getElementById('version');
+    var notesEl = document.getElementById('notes');
+    var notesSection = document.getElementById('notes-section');
+    var sizeEl = document.getElementById('size');
+
+    // Cache-busted: Pages serves the manifest with a long max-age, and a page
+    // that offers yesterday's version number beside today's APK is worse than
+    // one that offers no number at all.
+    fetch('version.json?t=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        return r.json();
+      })
+      .then(function (m) {
+        if (m.versionName) {
+          versionEl.textContent = 'Version ' + m.versionName +
             (m.versionCode ? ' · build ' + m.versionCode : '');
-          if (m.notes) { notesEl.textContent = m.notes; notesSection.hidden = false; }
-        })
-        .catch(function () {});
-      fetch(product.dataset.apk, { method: 'HEAD' })
-        .then(function (r) {
-          var len = r.headers.get('content-length');
-          if (len) sizeEl.textContent = (Number(len) / 1048576).toFixed(1) + ' MB · Android 7.1 or newer';
-        })
-        .catch(function () {});
-    });
+        }
+        if (m.notes) {
+          notesEl.textContent = m.notes;
+          notesSection.hidden = false;
+        }
+      })
+      .catch(function () {
+        // Leave the heading blank rather than guessing. The download still works.
+      });
+
+    // Size is a courtesy - it tells an operator on a thin link what they are in
+    // for - so it is asked for separately and skipped in silence if the HEAD
+    // fails or the server declines to say.
+    fetch('venture-release.apk', { method: 'HEAD' })
+      .then(function (r) {
+        var len = r.headers.get('content-length');
+        if (!len) return;
+        sizeEl.textContent = (Number(len) / 1048576).toFixed(1) +
+          ' MB · Android 7.1 or newer';
+      })
+      .catch(function () {});
   })();
 </script>
 </body>
