@@ -1,6 +1,6 @@
 {
-  "versionCode": 14,
-  "versionName": "0.14",
+  "versionCode": 17,
+  "versionName": "0.17",
   "apkUrl": "https://smartdrone-us.github.io/VentureK-Release/venture-release.apk",
-  "notes": "Venture Home 0.2: boot to the launcher instead of launching Venture automatically."
+  "notes": "Venture 0.17 — one app\n\nThe controller is now a single application. Venture is the home screen;\nVenture Home and Cyan are no longer installed alongside it.\n\n• New home screen — Fly, Plan, Missions, Config — each opening straight to\n  the thing, with no second menu in between. Review has a place but is not\n  built yet.\n• Wi-Fi can be set up on the controller. Config > Wi-Fi turns the radio on,\n  lists what is in range and joins a network. The map downloads its imagery\n  over that connection; with no network an area you have not visited before\n  draws as an empty grid.\n• The new-mission chooser, compass calibration and every text field are now\n  full screens, and each one has a visible way back. The keyboard gained the\n  symbols needed to type a Wi-Fi password.\n• Fly and Compass stay unavailable until the aircraft is connected, and say\n  why rather than opening onto nothing.\n\nMigration: this updates Venture only. A controller provisioned before this\nrelease still carries Venture Home and Cyan and still boots to Venture Home,\nso it will show that launcher with Venture's own home screen behind it. Such\na unit must be re-provisioned to become the single-app kiosk: device\nownership cannot be moved between packages on Android 7, so the previous\nowner has to be cleared first. See tools/provision."
 }
