@@ -61,8 +61,19 @@
   #notes {
     margin: 0; padding: 1.15rem 1.35rem; border-radius: .75rem;
     background: rgba(255,255,255,.05); border-left: 3px solid #E25622;
-    white-space: pre-wrap; font: inherit; color: #DCE6EB;
+    font: inherit; color: #DCE6EB;
   }
+  /* The notes are written into a git tag, so they arrive wrapped for a
+     terminal. They are re-flowed into blocks below and laid out here, rather
+     than printed with pre-wrap — which kept somebody else's 78-character line
+     breaks and read as broken text in a browser window. */
+  #notes p { margin: 0 0 .7rem; line-height: 1.6; }
+  #notes p:last-child { margin-bottom: 0; }
+  #notes ul { margin: 0 0 .7rem; padding-left: 1.15rem; }
+  #notes ul:last-child { margin-bottom: 0; }
+  #notes li { margin-bottom: .45rem; line-height: 1.6; }
+  #notes li:last-child { margin-bottom: 0; }
+  #notes .lead { font-weight: 600; color: #F1F6F9; }
   ol { margin: 0; padding-left: 1.35rem; color: #C4D2DA; }
   li { margin-bottom: .55rem; }
   .aside { margin: .9rem 0 0; color: #6F828C; font-size: .875rem; }
@@ -88,7 +99,7 @@
 
   <section id="notes-section" hidden>
     <h2>What changed</h2>
-    <p id="notes"></p>
+    <div id="notes"></div>
   </section>
 
   <section>
@@ -120,6 +131,52 @@
     var notesSection = document.getElementById('notes-section');
     var sizeEl = document.getElementById('size');
 
+    // Release notes come from an annotated git tag, so they are wrapped for a
+    // terminal at about 78 characters. Re-flowed here into blocks — one per
+    // bullet, one per paragraph — and built as elements so the browser wraps
+    // them to its own width. Every piece of text still goes in through
+    // textContent: the notes are author-controlled, but they are the one part
+    // of this page that comes from outside it, and there is no reason to give
+    // them a path to markup.
+    function renderNotes(raw) {
+      var lines = String(raw).split('\n');
+      var blocks = [];
+      var open = null;
+      for (var i = 0; i < lines.length; i++) {
+        var text = lines[i].trim();
+        var isBullet = text.indexOf('\u2022') === 0 || text.indexOf('- ') === 0 || text.indexOf('* ') === 0;
+        if (!text) { open = null; continue; }
+        if (isBullet) {
+          open = { bullet: true, text: text.replace(/^[\u2022*-]\s*/, '') };
+          blocks.push(open);
+        } else if (open) {
+          open.text += ' ' + text;
+        } else {
+          open = { bullet: false, text: text };
+          blocks.push(open);
+        }
+      }
+      notesEl.textContent = '';
+      var list = null;
+      for (var j = 0; j < blocks.length; j++) {
+        var b = blocks[j];
+        if (b.bullet) {
+          if (!list) { list = document.createElement('ul'); notesEl.appendChild(list); }
+          var li = document.createElement('li');
+          li.textContent = b.text;
+          list.appendChild(li);
+        } else {
+          list = null;
+          var p = document.createElement('p');
+          // The first block is the release's own headline — "Venture 0.21 —
+          // what it is about" — and reads as one.
+          if (j === 0) p.className = 'lead';
+          p.textContent = b.text;
+          notesEl.appendChild(p);
+        }
+      }
+    }
+
     // Cache-busted: Pages serves the manifest with a long max-age, and a page
     // that offers yesterday's version number beside today's APK is worse than
     // one that offers no number at all.
@@ -134,7 +191,7 @@
             (m.versionCode ? ' · build ' + m.versionCode : '');
         }
         if (m.notes) {
-          notesEl.textContent = m.notes;
+          renderNotes(m.notes);
           notesSection.hidden = false;
         }
       })
