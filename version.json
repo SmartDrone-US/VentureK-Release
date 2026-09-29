@@ -1,6 +1,6 @@
 {
-  "versionCode": 26,
-  "versionName": "0.26",
+  "versionCode": 27,
+  "versionName": "0.27",
   "apkUrl": "https://smartdrone-us.github.io/VentureK-Release/venture-release.apk",
-  "notes": "Venture 0.26 — terrain following under review\n\n• We are reviewing the quality of terrain following, and it is unavailable in this release while that work is under way. Missions flown at a set height above the takeoff point work as before.\n\n• In the save wizard the Terrain Follow option is greyed out. A mission saved earlier with terrain following on can be flown by setting it to Relative Alt: open it, go through the wizard, choose Relative Alt and save.\n\n• The app chooser no longer flashes up for a moment while an update installs.\n\nInstalling over the top keeps your missions and settings."
+  "notes": "Venture 0.27 — Wi-Fi networks and battery\n\n• The controller now remembers the Wi-Fi networks it has joined. Saved networks are marked on the Wi-Fi page and reconnect with a single tap, without typing the password again. You are only asked for it if the saved one stops working.\n\n• Saved networks that are out of range are listed too, and each saved network has a FORGET button (tap twice to confirm).\n\n• If a network cannot be joined, the controller goes straight back to the network it was on.\n\n• The controller's battery level is shown as a percentage inside the battery outline in the top-right corner. It turns green while charging, amber at 30% and red at 15%.\n\nInstalling over the top keeps your missions and settings."
 }
